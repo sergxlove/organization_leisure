@@ -1,26 +1,27 @@
+//подключение библиотек
 #include <iostream>
 #include <fstream>
 #include <algorithm>
 #include <string>
 #include <vector>
-using namespace std;
+using namespace std;//использование пространства имен
 class organization_leisure
 {
 public:
-	organization_leisure();
-	organization_leisure(string name_event, string leader, string date, float time, float duration, float price);
-	~organization_leisure();
-	void set_data();
-	void print_field();
-	void print_info();
-	void write_file(vector<organization_leisure> &arr, string path);
-	void read_file(vector<organization_leisure>& arr, string path);
-	void find_field(vector<organization_leisure>& arr, string field, int var);
-	void print_all_field();
-	void print_field_mm();
-	void search_min(vector<organization_leisure>& arr, int var);
-	void search_max(vector<organization_leisure>& arr, int var);
-	void sort_field(vector<organization_leisure>& arr, int var);
+	organization_leisure();//базовый конструктор
+	organization_leisure(string name_event, string leader, string date, float time, float duration, float price);//конструктор с параметрами
+	~organization_leisure();//деструктоор
+	void set_data();//ввод данных
+	void print_field();//вывод полей объекта
+	void print_info();//вывод информации о  меню
+	void write_file(vector<organization_leisure> &arr, string path);//запись в файл
+	void read_file(vector<organization_leisure>& arr, string path);//чтение из файла
+	void find_field(vector<organization_leisure>& arr, string field, int var);//поиск данных по полю
+	void print_all_field();//вывод доступных полей класса
+	void print_field_mm();//вывод полей для нахождения максимума или минимума
+	void search_min(vector<organization_leisure>& arr, int var);//поиск минимального
+	void search_max(vector<organization_leisure>& arr, int var);//поиск максимального
+	void sort_field(vector<organization_leisure>& arr, int var);//сортировка по полю
 private:
 	string name_event;//наименование мероприятия
 	string leader;//ведущий
@@ -33,9 +34,10 @@ private:
 int main()
 {
 	setlocale(LC_ALL, "rus");
-	organization_leisure org;
-	vector<organization_leisure> arr;
-	auto it = arr.begin();
+	organization_leisure org;//создание объекта класса
+	vector<organization_leisure> arr;//создание массива объектов
+	auto it = arr.begin();//создание итераатора
+	//объявление переменных
 	int var_switch = 0;
 	int var, count;
 	var = count = 0;
@@ -43,19 +45,20 @@ int main()
 	string field;
 	bool exit = true;
 	org.print_info();
+	org.read_file(arr, path);//чтение из файла
 	while (exit)
 	{
 		cout << "Выберите действие: " << endl;
 		cin >> var_switch;
-		switch (var_switch)
+		switch (var_switch)//консольное меню
 		{
-		case 1:
-			org.set_data();
-			arr.push_back(org);
+		case 1://режим 1
+			org.set_data();//ввод данных
+			arr.push_back(org);//добавление элемента в вектор
 			cout << "Объект класса создан" << endl;
 			break;
-		case 2:
-			if (arr.empty())
+		case 2://режим 2
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
@@ -63,16 +66,16 @@ int main()
 			{
 				cout << "Доступные элементы:" << endl;
 				count = 0;
-				for (auto& el : arr)
+				for (auto& el : arr)//вывод номеров элемеентов
 				{
 					cout << "Номер " << count << endl;
 				}
 				cout << "Какой элемент хотите удалить?" << endl;
 				cin >> var;
-				if (var < arr.size())
+				if (var < arr.size())//проверка на коррекность ввода
 				{
-					arr.erase(arr.begin() + var);
-					org.write_file(arr, path);
+					arr.erase(arr.begin() + var);//удаление элемента
+					org.write_file(arr, path);//запись в файл
 					cout << "Объект удален" << endl;
 				}
 				else
@@ -82,7 +85,7 @@ int main()
 			}
 			break;
 		case 3:
-			if (arr.empty())
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
@@ -262,6 +265,7 @@ void organization_leisure::write_file(vector<organization_leisure> &arr, string 
 	file.open(path, fstream::out | fstream::app);
 	if (file.is_open())
 	{
+		file.clear();
 		file << arr.size() << "\n";
 		for (auto& el : arr)
 		{
