@@ -84,99 +84,100 @@ int main()
 				}
 			}
 			break;
-		case 3:
+		case 3://режим 3
 			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				org.write_file(arr, path);
+				org.write_file(arr, path);//запись в файл
 				cout << "Данные успешно сохранены в файл" << endl;
 			}
 			break;
-		case 4:
-			org.read_file(arr, path);
+		case 4://режим 4
+			org.read_file(arr, path);//чтение из файла
 			cout << "Данные считаны" << endl;
 			break;
-		case 5:
-			if (arr.empty())
+		case 5://режим 5
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				org.print_all_field();
+				org.print_all_field();//вывод всех полей
 				cout << "Выберите нужное поле" << endl;
 				cin >> var;
 				cout << "Введите данные которые хотите найти" << endl;
 				cin >> field;
-				org.find_field(arr, field, var);
+				org.find_field(arr, field, var);//поиск данных по полю
 			}
 			break;
-		case 6:
-			if (arr.empty())
+		case 6://режим 6
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				org.print_field_mm();
+				org.print_field_mm();//вывод полей для нахождения максимума и минимума
 				cout << "Выберите нужное поле" << endl;
 				cin >> var;
-				org.search_min(arr, var);
+				org.search_min(arr, var);//поиск минимального объекта
 			}
 			break;
-		case 7:
-			if (arr.empty())
+		case 7://режим 7
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				org.print_field_mm();
+				org.print_field_mm();//вывод полей для нахождения максимума и минимума
 				cout << "Выберите нужное поле" << endl;
 				cin >> var;
-				org.search_max(arr, var);
+				org.search_max(arr, var);//поиск максимального объекта
 			}
 			break;
-		case 8:
-			if (arr.empty())
+		case 8://режим 8
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				org.print_all_field();
+				org.print_all_field();//вывод всех полей
 				cout << "Выберите поле для сортировки" << endl;
 				cin >> var;
-				org.sort_field(arr, var);
+				org.sort_field(arr, var);//сортировка вектора
 				cout << "Массив отсортирован" << endl;
 			}
 			break;
-		case 9:
-			if (arr.empty())
+		case 9://режим 9
+			if (arr.empty())//проверка на наличие элементов в векторе
 			{
 				cout << "В векторе нет элементов" << endl;
 			}
 			else
 			{
-				for (auto& el : arr)
+				for (auto& el : arr)//цикл фор ич
 				{
-					el.print_field();
+					el.print_field();//вывод полей объекта
 				}
 			}
 			break;
-		case 10:
-			exit = false;
+		case 10://режим 10
+			exit = false;//выход из программы
 			cout << "Программа завершена" << endl;
 			break;
 		}
 	}
 	return 0;
 }
-organization_leisure::organization_leisure()
+organization_leisure::organization_leisure()//базовый конструктор
 {
+	//присвоение полям пустых значений
 	this->name_event = "";
 	this->leader = "";
 	this->name_user = "";
@@ -186,8 +187,9 @@ organization_leisure::organization_leisure()
 	this->price = 0.0f;
 }
 
-organization_leisure::organization_leisure(string name_event, string leader, string date, float time, float duration, float price)
+organization_leisure::organization_leisure(string name_event, string leader, string date, float time, float duration, float price)//конструктор с параметрами
 {
+	//присвоение полям введенных значений
 	this->name_event = name_event;
 	this->leader = leader;
 	this->name_user = name_user;
@@ -197,8 +199,9 @@ organization_leisure::organization_leisure(string name_event, string leader, str
 	this->price = price;
 }
 
-organization_leisure::~organization_leisure()
+organization_leisure::~organization_leisure()//деструктор
 {
+	//присвоение полям пустых значений
 	this->name_event = "";
 	this->leader = "";
 	this->name_user = "";
@@ -208,7 +211,7 @@ organization_leisure::~organization_leisure()
 	this->price = 0.0f;
 }
 
-void organization_leisure::set_data()
+void organization_leisure::set_data()//ввод данных
 {
 	string first_name, second_name, third_name;
 	cout << "Введите название мероприятия:" << endl;
@@ -232,7 +235,7 @@ void organization_leisure::set_data()
 	cin >> price;
 }
 
-void organization_leisure::print_field()
+void organization_leisure::print_field()//вывод полей объекта
 {
 	cout << "Поля класса organization_leisure" << endl;
 	cout << "Название мероприятия = " << name_event << endl;
@@ -244,7 +247,7 @@ void organization_leisure::print_field()
 	cout << "Стоимость = " << price << endl;
 }
 
-void organization_leisure::print_info()
+void organization_leisure::print_info()//вывод информации о меню
 {
 	cout << "Доступные режимы:" << endl;
 	cout << "1 - Ввод данных" << endl;
@@ -259,16 +262,17 @@ void organization_leisure::print_info()
 	cout << "10 - Выход" << endl;
 }
 
-void organization_leisure::write_file(vector<organization_leisure> &arr, string path)
+void organization_leisure::write_file(vector<organization_leisure> &arr, string path)//запись в файл
 {
-	fstream file;
-	file.open(path, fstream::out | fstream::app);
-	if (file.is_open())
+	fstream file;//создание объекта класса фстрим
+	file.open(path, fstream::out | fstream::app);//открытие файла
+	if (file.is_open())//проверка открытия файла
 	{
-		file.clear();
-		file << arr.size() << "\n";
-		for (auto& el : arr)
+		file.clear();//очистка файла
+		file << arr.size() << "\n";//запись первой строчкой количества элементов
+		for (auto& el : arr)//цикл фор ич
 		{
+			//запись полей в файл
 			file << el.name_event << "\n";
 			file << el.leader << "\n";
 			file << el.name_user << "\n";
@@ -277,7 +281,7 @@ void organization_leisure::write_file(vector<organization_leisure> &arr, string 
 			file << el.duration << "\n";
 			file << el.price << "\n";
 		}
-		file.close();
+		file.close();//закрытие файла
 	}
 	else
 	{
@@ -285,20 +289,21 @@ void organization_leisure::write_file(vector<organization_leisure> &arr, string 
 	}
 }
 
-void organization_leisure::read_file(vector<organization_leisure>& arr, string path)
+void organization_leisure::read_file(vector<organization_leisure>& arr, string path)//чтение из файла
 {
-	fstream file;
+	fstream file;//создание объекта класса фстрим
 	organization_leisure obj;
 	int size = 0;
 	string field;
-	file.open(path, fstream::in);
-	if (file.is_open())
+	file.open(path, fstream::in);//открытие файла
+	if (file.is_open())//проверка открытия файла
 	{
-		arr.clear();
-		getline(file, field);
+		arr.clear();//очистка вектор
+		getline(file, field);//считывание количества объектов
 		size = stoi(field);
 		for (int i = 0;i < size;i++)
 		{
+			//чтение данных и запись их в поля класса 
 			getline(file, obj.name_event);
 			getline(file, obj.leader);
 			getline(file, obj.name_user);
@@ -309,9 +314,9 @@ void organization_leisure::read_file(vector<organization_leisure>& arr, string p
 			obj.duration = stoi(field);
 			getline(file, field);
 			obj.price = stoi(field);
-			arr.push_back(obj);
+			arr.push_back(obj);//добавление объекта в вектор
 		}
-		file.close();
+		file.close();//закрытие файла
 	}
 	else
 	{
@@ -319,83 +324,83 @@ void organization_leisure::read_file(vector<organization_leisure>& arr, string p
 	}
 }
 
-void organization_leisure::find_field(vector<organization_leisure>& arr, string field, int var)
+void organization_leisure::find_field(vector<organization_leisure>& arr, string field, int var)//поиск по полям
 {
 	bool check = false;
-	switch (var)
+	switch (var)//выбор поля
 	{
 	case 1:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (field == el.name_event)
+			if (field == el.name_event)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 2:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (field == el.leader)
+			if (field == el.leader)//нахождени данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 3:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (field == el.name_user)
+			if (field == el.name_user)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 4:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (field == el.date)
+			if (field == el.date)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 5:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (stoi(field) == el.time)
+			if (stoi(field) == el.time)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 6:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (stoi(field) == el.duration)
+			if (stoi(field) == el.duration)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
 		if (check == false) { cout << "Данные не найдены" << endl; }
 		break;
 	case 7:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (stoi(field) == el.price)
+			if (stoi(field) == el.price)//нахождение данных в поле
 			{
-				el.print_field();
+				el.print_field();//вывод всех полей найденного объекта
 				check = true;
 			}
 		}
@@ -407,7 +412,7 @@ void organization_leisure::find_field(vector<organization_leisure>& arr, string 
 	}
 }
 
-void organization_leisure::print_all_field()
+void organization_leisure::print_all_field()//вывод доступных полей
 {
 	cout << "Доступные поля:" << endl;
 	cout << "1 - Название мероприятия" << endl;
@@ -419,7 +424,7 @@ void organization_leisure::print_all_field()
 	cout << "7 - Стоимость" << endl;
 }
 
-void organization_leisure::print_field_mm()
+void organization_leisure::print_field_mm()//вывод полей для нахождения максимума и минимума
 {
 	cout << "Доступные поля для нахождение максимума или минимума" << endl;
 	cout << "1 - Время начала мероприятия" << endl;
@@ -427,40 +432,40 @@ void organization_leisure::print_field_mm()
 	cout << "3 - Стоимость" << endl;
 }
 
-void organization_leisure::search_min(vector<organization_leisure>& arr, int var)
+void organization_leisure::search_min(vector<organization_leisure>& arr, int var)//поиск минимального элемента
 {
 	float min = 1000000.0f;
-	switch (var)
+	switch (var)//выбор поля
 	{
 	case 1:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (min > el.time)
+			if (min > el.time)//определение минимального элемента
 			{
 				min = el.time;
 			}
 		}
-		cout << "Минимальный элемент = " << min << endl;
+		cout << "Минимальный элемент = " << min << endl;//вывд минимального элемента
 		break;
 	case 2:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (min > el.duration)
+			if (min > el.duration)//определение минимального элемента
 			{
 				min = el.duration;
 			}
 		}
-		cout << "Минимальный элемент = " << min << endl;
+		cout << "Минимальный элемент = " << min << endl;//вывод минимального элемента
 		break;
 	case 3:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (min > el.price)
+			if (min > el.price)//определение минимального элемента
 			{
 				min = el.price;
 			}
 		}
-		cout << "Минимальный элемент = " << min << endl;
+		cout << "Минимальный элемент = " << min << endl;//вывод минимального элемента
 		break;
 	default:
 		cout << "Неверный выбор поля" << endl;
@@ -468,40 +473,40 @@ void organization_leisure::search_min(vector<organization_leisure>& arr, int var
 	}
 }
 
-void organization_leisure::search_max(vector<organization_leisure>& arr, int var)
+void organization_leisure::search_max(vector<organization_leisure>& arr, int var)//поиск максимального элемента
 {
 	float max = 0.0f;
-	switch (var)
+	switch (var)//выбор поля
 	{
 	case 1:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (max < el.time)
+			if (max < el.time)//определение максимального элемента
 			{
 				max = el.time;
 			}
 		}
-		cout << "Максимальный элемент = " << max << endl;
+		cout << "Максимальный элемент = " << max << endl;//вывод максимального элемента
 		break;
 	case 2:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (max < el.duration)
+			if (max < el.duration)//определение максимального элемента
 			{
 				max = el.duration;
 			}
 		}
-		cout << "Максимальный элемент = " << max << endl;
+		cout << "Максимальный элемент = " << max << endl;//вывод максимального элемента
 		break;
 	case 3:
-		for (auto& el : arr)
+		for (auto& el : arr)//цикл фор ич
 		{
-			if (max < el.price)
+			if (max < el.price)//определение максимального элемента
 			{
 				max = el.price;
 			}
 		}
-		cout << "Максимальный элемент = " << max << endl;
+		cout << "Максимальный элемент = " << max << endl;//вывод максимального элемента
 		break;
 	default:
 		cout << "Неверный выбор поля" << endl;
@@ -509,30 +514,30 @@ void organization_leisure::search_max(vector<organization_leisure>& arr, int var
 	}
 }
 
-void organization_leisure::sort_field(vector<organization_leisure>& arr, int var)
+void organization_leisure::sort_field(vector<organization_leisure>& arr, int var)//сортировка по полю
 {
-	switch (var)
+	switch (var)//выбор поля
 	{
 	case 1:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.name_event < o2.name_event;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.name_event < o2.name_event;});//сортировка
 		break;
 	case 2:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.leader < o2.leader;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.leader < o2.leader;});//сортировка
 		break;
 	case 3:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.name_user < o2.name_user;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.name_user < o2.name_user;});//сортировка
 		break;
 	case 4:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.date < o2.date;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.date < o2.date;});//сортировка
 		break;
 	case 5:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.time < o2.time;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.time < o2.time;});//сортировка
 		break;
 	case 6:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.duration < o2.duration;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.duration < o2.duration;});//сортировка
 		break;
 	case 7:
-		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.price < o2.price;});
+		sort(arr.begin(), arr.end(), [](const organization_leisure& o1, const organization_leisure& o2) {return o1.price < o2.price;});//сортировка
 		break;
 	default:
 		cout << "Неверный выбор поля" << endl;
