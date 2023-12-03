@@ -36,11 +36,9 @@ int main()
 	setlocale(LC_ALL, "rus");
 	organization_leisure org;//создание объекта класса
 	vector<organization_leisure> arr;//создание массива объектов
-	auto it = arr.begin();//создание итераатора
 	//объявление переменных
-	int var_switch = 0;
-	int var, count;
-	var = count = 0;
+	int var, count, var_switch;
+	var = count = var_switch = 0;
 	string path = "data.txt";
 	string field;
 	bool exit = true;
@@ -69,6 +67,7 @@ int main()
 				for (auto& el : arr)//вывод номеров элемеентов
 				{
 					cout << "Номер " << count << endl;
+					count++;
 				}
 				cout << "Какой элемент хотите удалить?" << endl;
 				cin >> var;
@@ -265,7 +264,7 @@ void organization_leisure::print_info()//вывод информации о меню
 void organization_leisure::write_file(vector<organization_leisure> &arr, string path)//запись в файл
 {
 	fstream file;//создание объекта класса фстрим
-	file.open(path, fstream::out | fstream::app);//открытие файла
+	file.open(path, fstream::out);//открытие файла
 	if (file.is_open())//проверка открытия файла
 	{
 		file.clear();//очистка файла
