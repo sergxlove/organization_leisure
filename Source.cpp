@@ -36,11 +36,9 @@ int main()
 	setlocale(LC_ALL, "rus");
 	organization_leisure org;//создание объекта класса
 	vector<organization_leisure> arr;//создание массива объектов
-	auto it = arr.begin();//создание итераатора
 	//объявление переменных
-	int var_switch = 0;
-	int var, count;
-	var = count = 0;
+	int var, count, var_switch;
+	var = count = var_switch = 0;
 	string path = "data.txt";
 	string field;
 	bool exit = true;
@@ -69,6 +67,7 @@ int main()
 				for (auto& el : arr)//вывод номеров элемеентов
 				{
 					cout << "Номер " << count << endl;
+					count++;
 				}
 				cout << "Какой элемент хотите удалить?" << endl;
 				cin >> var;
@@ -85,15 +84,8 @@ int main()
 			}
 			break;
 		case 3://режим 3
-			if (arr.empty())//проверка на наличие элементов в векторе
-			{
-				cout << "В векторе нет элементов" << endl;
-			}
-			else
-			{
-				org.write_file(arr, path);//запись в файл
-				cout << "Данные успешно сохранены в файл" << endl;
-			}
+			org.write_file(arr, path);//запись в файл
+			cout << "Данные успешно сохранены в файл" << endl;
 			break;
 		case 4://режим 4
 			org.read_file(arr, path);//чтение из файла
@@ -170,6 +162,9 @@ int main()
 		case 10://режим 10
 			exit = false;//выход из программы
 			cout << "Программа завершена" << endl;
+			break;
+		default:
+			org.print_info();
 			break;
 		}
 	}
@@ -265,7 +260,7 @@ void organization_leisure::print_info()//вывод информации о меню
 void organization_leisure::write_file(vector<organization_leisure> &arr, string path)//запись в файл
 {
 	fstream file;//создание объекта класса фстрим
-	file.open(path, fstream::out | fstream::app);//открытие файла
+	file.open(path, fstream::out);//открытие файла
 	if (file.is_open())//проверка открытия файла
 	{
 		file.clear();//очистка файла
