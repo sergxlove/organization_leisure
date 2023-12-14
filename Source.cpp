@@ -84,15 +84,8 @@ int main()
 			}
 			break;
 		case 3://режим 3
-			if (arr.empty())//проверка на наличие элементов в векторе
-			{
-				cout << "В векторе нет элементов" << endl;
-			}
-			else
-			{
-				org.write_file(arr, path);//запись в файл
-				cout << "Данные успешно сохранены в файл" << endl;
-			}
+			org.write_file(arr, path);//запись в файл
+			cout << "Данные успешно сохранены в файл" << endl;
 			break;
 		case 4://режим 4
 			org.read_file(arr, path);//чтение из файла
@@ -169,6 +162,9 @@ int main()
 		case 10://режим 10
 			exit = false;//выход из программы
 			cout << "Программа завершена" << endl;
+			break;
+		default:
+			org.print_info();
 			break;
 		}
 	}
